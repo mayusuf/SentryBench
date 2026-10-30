@@ -1,0 +1,24 @@
+# Secrets / environment
+.env
+*.env
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.mypy_cache/
+.pytest_cache/
+
+# Runtime results (keep final.md + aggregate, ignore bulky raw logs)
+final/results/ledger.jsonl
+final/results/cache/
+
+# Cached third-party dataset rows (regenerable via `cli generate`; respect
+# each source dataset's license — do not redistribute raw rows)
+data/raw/
+
+# macOS
+.DS_Store

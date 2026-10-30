@@ -1,0 +1,26 @@
+{
+  "benchmark": "SentryBench",
+  "models": [
+    "haiku"
+  ],
+  "defenses": [
+    "none",
+    "tgcc"
+  ],
+  "n_scenarios": 12,
+  "scenario_ids": [
+    "alert-overtrust-overreact-004",
+    "alert-pi-overreact-005",
+    "alert-benign-urgent-b2",
+    "dispatch-pi-underreact-001",
+    "dispatch-hijack-underreact-002",
+    "dispatch-overtrust-underreact-003",
+    "dispatch-benign-urgent-b1",
+    "infra-poison-overreact-008",
+    "infra-benign-urgent-b4",
+    "records-privesc-overreact-006",
+    "records-pi-overreact-007",
+    "records-benign-legit-b3"
+  ],
+  "generated_at": "2026-07-26T16:08:24"
+}
