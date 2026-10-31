@@ -310,11 +310,9 @@ Historical research notes and future-work ideas are archived in
 - **Sandbox only** — no real APIs, no real PII (PII-flagged rows excluded).
 - Attack payloads are real but templated and domain-bounded; the artifact avoids
   operational detail that would transfer to attacking real public-safety systems.
-- **Before publishing to GitHub:** `data/raw/` (cached third-party rows) is
-  git-ignored. Note that `data/scenarios_hf/generated.json` embeds derived content
-  from the source datasets — the disaster corpus has an **unknown** license, so
-  review source terms (or regenerate locally) before redistributing it.
-- **Rotate any API key** that has ever been committed or shared in plaintext.
+- `data/raw/` (cached third-party rows) is not distributed; the disaster corpus
+  has an unknown license, so regenerate it locally before redistributing derived
+  scenarios.
 
 ---
 
