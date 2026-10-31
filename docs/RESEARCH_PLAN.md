@@ -1,5 +1,10 @@
 # SentryBench — Research Plan
 
+> **Archived working notes.** This document records research planning and may
+> include tentative claims or unimplemented ideas. For the published paper,
+> see [arXiv:2610.34535](https://arxiv.org/abs/2610.34535); for current usage,
+> see the [project README](../README.md).
+
 *A Benchmark for Adversarial Robustness of Tool-Using LLM Agents in Public-Safety Deployments*
 
 > Working name: **SentryBench** (alt: PSAgentBench). Workspace: `pubai`.
@@ -17,7 +22,8 @@ We measure whether tool-using LLM agents deployed in public-safety settings fail
 
 ## 0.5 Current state (as-built)
 
-**Built and executed** (see `paper.md` and `final/final_hf.md` for full results):
+**Built and executed** (see the [paper](https://arxiv.org/abs/2610.34535) and
+[results](../final/final_hf.md) for full results):
 
 - **Harness:** complete Python package `sentrybench/` (ingest → generate → runner/episode → deterministic judge → metrics → self-generating report), ledger-first scoring, bootstrap CIs, live per-episode logging.
 - **Data — real, not synthetic.** Scenarios are grounded in real Hugging Face datasets: `spikecodes/911-call-transcripts` and `community-datasets/disaster_response_messages` (legitimate incident content) + `deepset/prompt-injections` and `jackhhao/jailbreak-classification` (attack payloads). No real PII (PII-flagged rows dropped); all tools are mocked (sandbox-only).
@@ -181,7 +187,7 @@ deterministically (`cli generate`), so scaling is a parameter change.
 *Note (v0.1 plan, retained):* target `5 vectors × 3 failure targets × 4 domains ×
 ~4 variants ≈ 240 adversarial` + ~40–60 benign controls.
 
-### 7.2 Per-scenario schema (see IMPLEMENTATION_PLAN.md for JSON)
+### 7.2 Per-scenario schema (see [schemas.py](../sentrybench/schemas.py) for the implementation)
 
 Each scenario carries: `id`, `subdomain`, `attack_vector`, `target_failure_mode`, `narrative/context`, `available_tools`, `injected_payload` (+ delivery channel), `gold_action_set`, `forbidden_action_set`, `severity_weights {c_fn, c_fp}`, `rubric`, `provenance/grounding_ref`, `difficulty`, `split {public|canary}`.
 

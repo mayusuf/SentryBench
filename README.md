@@ -1,6 +1,10 @@
 # SentryBench
 
-**A Benchmark for Adversarial Robustness of Tool-Using LLM Agents in Public-Safety Deployments.**
+**A Cost-Sensitive Benchmark for Adversarial Robustness of Tool-Using LLM Agents in Public-Safety Deployments.**
+
+**[Paper: arXiv:2610.34535](https://arxiv.org/abs/2610.34535)** ·
+[Code](https://github.com/mayusuf/SentryBench) ·
+[Latest results](final/final_hf.md)
 
 SentryBench measures whether tool-using LLM agents in public-safety settings fail
 **safely in both directions** under adversarial pressure. Unlike chat-safety
@@ -15,8 +19,6 @@ alert.
 Scenarios are grounded in **real data** (real 911 transcripts, disaster-response
 messages, and real prompt-injection / jailbreak payloads). All tools are
 **mocked** — no real APIs, no real PII.
-
-> 📄 Full write-up: **[paper.md](paper.md)** · 🧭 Plans: [RESEARCH_PLAN.md](RESEARCH_PLAN.md) · [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md) · 📊 Latest results: [final/final_hf.md](final/final_hf.md)
 
 ---
 
@@ -90,7 +92,8 @@ data/
 ├── scenarios/          # 12 hand-authored vertical-slice scenarios
 └── scenarios_hf/       # generated.json (190 real-data scenarios)
 final/                  # final_hf.md + results_<tag>/ (run_results, ledger, metrics, manifest)
-paper.md · RESEARCH_PLAN.md · IMPLEMENTATION_PLAN.md
+docs/                   # archived research notes
+LICENSE                 # MIT license for the code
 ```
 
 ---
@@ -108,7 +111,8 @@ paper.md · RESEARCH_PLAN.md · IMPLEMENTATION_PLAN.md
 
 ```bash
 # 1. Clone + enter
-git clone <your-fork-url> && cd pubai
+git clone https://github.com/mayusuf/SentryBench.git
+cd SentryBench
 
 # 2. Create a virtual environment
 python -m venv .venv
@@ -223,7 +227,9 @@ datasets-server REST API; cached under `data/raw/`).
 | [`spikecodes/911-call-transcripts`](https://huggingface.co/datasets/spikecodes/911-call-transcripts) | legitimate dispatch transcripts | MIT |
 
 PII-flagged rows are dropped; only the English `message` field is used from the
-disaster corpus. See [paper.md §6.1](paper.md) for full schemas and filtering.
+disaster corpus. See [Section V of the paper](https://arxiv.org/html/2610.34535v1#S5)
+for dataset construction and filtering, and [schemas.py](sentrybench/schemas.py)
+for the implemented schemas.
 
 ---
 
@@ -294,7 +300,8 @@ Written to `final/results_<tag>/` (and `final/final_<tag>.md`):
   under-exercised.
 - Scoring is deterministic (no LLM judge); severity weights are authored constants.
 
-See [RESEARCH_PLAN.md §19](RESEARCH_PLAN.md) for the full remaining-work list.
+Historical research notes and future-work ideas are archived in
+[docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md).
 
 ---
 
@@ -313,7 +320,7 @@ See [RESEARCH_PLAN.md §19](RESEARCH_PLAN.md) for the full remaining-work list.
 
 ## License
 
-- **Code (harness):** add a `LICENSE` file before publishing — MIT is recommended.
+- **Code (harness):** licensed under the [MIT License](LICENSE).
 - **Data:** each source dataset retains its own license (Apache-2.0 / MIT /
   unknown — see the Datasets table). Derived scenarios must respect those terms.
 
@@ -323,10 +330,15 @@ See [RESEARCH_PLAN.md §19](RESEARCH_PLAN.md) for the full remaining-work list.
 
 ```bibtex
 @misc{sentrybench2026,
-  title        = {SentryBench: A Benchmark for Adversarial Robustness of
-                  Tool-Using LLM Agents in Public-Safety Deployments},
-  year         = {2026},
-  howpublished = {\url{https://github.com/<your-user>/<your-repo>}}
+  title         = {SentryBench: A Cost-Sensitive Benchmark for Adversarial Robustness of
+                   Tool-Using LLM Agents in Public-Safety Deployments},
+  author        = {Md Abu Yusuf and Oyshi Tabassum Aditi and Md Faysal Hosain Mazed},
+  year          = {2026},
+  eprint        = {2610.34535},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CR},
+  doi           = {10.48550/arXiv.2610.34535},
+  url           = {https://github.com/mayusuf/SentryBench}
 }
 ```
 
